@@ -48,7 +48,9 @@ class GetStartedPage extends StatelessWidget {
                         borderRadius: BorderRadius.circular(defaultRadius)
                       )
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/sign-up');
+                    },
                     child: Text(
                       'Get Started',
                       style: whiteTextStyle.copyWith(
