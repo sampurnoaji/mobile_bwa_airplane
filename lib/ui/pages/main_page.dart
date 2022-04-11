@@ -1,4 +1,5 @@
 import 'package:bwa_airplane/shared/theme.dart';
+import 'package:bwa_airplane/ui/widgets/custom_bottom_nav_item.dart';
 import 'package:flutter/material.dart';
 
 class MainPage extends StatelessWidget {
@@ -20,85 +21,21 @@ class MainPage extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(),
-                  Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/icon_home.png')),
-                      )),
-                  Container(
-                    width: 30,
-                    height: 2,
-                    decoration: BoxDecoration(
-                        color: primaryColor,
-                        borderRadius: BorderRadius.circular(defaultRadius)),
-                  )
-                ],
+              CustomBottomNavItem(
+                imageUrl: 'assets/icon_home.png',
+                isSelected: true,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(),
-                  Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/icon_book.png')),
-                      )),
-                  Container(
-                    width: 30,
-                    height: 2,
-                    decoration: BoxDecoration(
-                        color: kTransparentColor,
-                        borderRadius: BorderRadius.circular(defaultRadius)),
-                  )
-                ],
+              CustomBottomNavItem(
+                imageUrl: 'assets/icon_book.png',
+                isSelected: false,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(),
-                  Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/icon_card.png')),
-                      )),
-                  Container(
-                    width: 30,
-                    height: 2,
-                    decoration: BoxDecoration(
-                        color: kTransparentColor,
-                        borderRadius: BorderRadius.circular(defaultRadius)),
-                  )
-                ],
+              CustomBottomNavItem(
+                imageUrl: 'assets/icon_card.png',
+                isSelected: false,
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(),
-                  Container(
-                      width: 24,
-                      height: 24,
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                            image: AssetImage('assets/icon_setting.png')),
-                      )),
-                  Container(
-                    width: 30,
-                    height: 2,
-                    decoration: BoxDecoration(
-                        color: kTransparentColor,
-                        borderRadius: BorderRadius.circular(defaultRadius)),
-                  )
-                ],
+              CustomBottomNavItem(
+                imageUrl: 'assets/icon_setting.png',
+                isSelected: false,
               ),
             ],
           ),

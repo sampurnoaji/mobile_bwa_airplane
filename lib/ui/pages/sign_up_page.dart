@@ -1,4 +1,5 @@
 import 'package:bwa_airplane/shared/theme.dart';
+import 'package:bwa_airplane/ui/widgets/custom_button.dart';
 import 'package:flutter/material.dart';
 
 class SignUpPage extends StatelessWidget {
@@ -113,46 +114,30 @@ class SignUpPage extends StatelessWidget {
       );
     }
 
-    Widget submitButton() {
-      return Builder(
-        builder: (context) => Container(
-          width: double.infinity,
-          height: 55,
-          child: TextButton(
-            onPressed: () {
-              Navigator.pushNamed(context, '/bonus');
-            },
-            style: TextButton.styleFrom(
-                backgroundColor: primaryColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(defaultRadius),
-                )),
-            child: Text(
-              'Get Started',
-              style: whiteTextStyle.copyWith(fontSize: 18, fontWeight: medium),
+    return Builder(builder: (context) {
+      return Container(
+        margin: EdgeInsets.only(top: 30),
+        padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
+        decoration: BoxDecoration(
+          color: kWhiteColor,
+          borderRadius: BorderRadius.circular(defaultRadius),
+        ),
+        child: Column(
+          children: [
+            nameInput(),
+            emailInput(),
+            passwordInput(),
+            hobbyInput(),
+            CustomButton(
+              title: 'Get Started',
+              onPressed: () {
+                Navigator.pushNamed(context, '/bonus');
+              },
             ),
-          ),
+          ],
         ),
       );
-    }
-
-    return Container(
-      margin: EdgeInsets.only(top: 30),
-      padding: EdgeInsets.symmetric(vertical: 30, horizontal: 20),
-      decoration: BoxDecoration(
-        color: kWhiteColor,
-        borderRadius: BorderRadius.circular(defaultRadius),
-      ),
-      child: Column(
-        children: [
-          nameInput(),
-          emailInput(),
-          passwordInput(),
-          hobbyInput(),
-          submitButton(),
-        ],
-      ),
-    );
+    });
   }
 
   Widget tacButton() {
