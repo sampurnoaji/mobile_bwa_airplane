@@ -30,10 +30,9 @@ class DestinationTile extends StatelessWidget {
             height: 70,
             margin: EdgeInsets.only(right: 16),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8),
+                borderRadius: BorderRadius.circular(8),
                 image: DecorationImage(
-                    fit: BoxFit.cover,
-                    image: AssetImage(imageUrl))),
+                    fit: BoxFit.cover, image: AssetImage(imageUrl))),
           ),
           Expanded(
             child: Column(
