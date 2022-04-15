@@ -1,4 +1,6 @@
 import 'package:bwa_airplane/ui/pages/bonus_page.dart';
+import 'package:bwa_airplane/ui/pages/choose_seat_page.dart';
+import 'package:bwa_airplane/ui/pages/detail_page.dart';
 import 'package:bwa_airplane/ui/pages/get_started_page.dart';
 import 'package:bwa_airplane/ui/pages/main_page.dart';
 import 'package:bwa_airplane/ui/pages/sign_up_page.dart';
@@ -24,6 +26,8 @@ class MyApp extends StatelessWidget {
         '/sign-up': (context) => SignUpPage(),
         '/bonus': (context) => BonusPage(),
         '/main': (context) => MainPage(),
+        '/detail': (context) => DetailPage(),
+        '/choose-seat': (context) => ChooseSeatPage(),
       },
     );
   }

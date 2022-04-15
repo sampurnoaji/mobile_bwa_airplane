@@ -187,7 +187,9 @@ class DetailPage extends StatelessWidget {
                   ),
                   CustomButton(
                     title: 'Book Now',
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.pushNamed(context, '/choose-seat');
+                    },
                     width: 170,
                   )
                 ],
