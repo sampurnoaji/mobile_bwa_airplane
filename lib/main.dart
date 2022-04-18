@@ -5,6 +5,7 @@ import 'package:bwa_airplane/ui/pages/detail_page.dart';
 import 'package:bwa_airplane/ui/pages/get_started_page.dart';
 import 'package:bwa_airplane/ui/pages/main_page.dart';
 import 'package:bwa_airplane/ui/pages/sign_up_page.dart';
+import 'package:bwa_airplane/ui/pages/success_checkout.dart';
 import 'package:flutter/material.dart';
 
 import 'ui/pages/splash_page.dart';
@@ -30,6 +31,7 @@ class MyApp extends StatelessWidget {
         '/detail': (context) => DetailPage(),
         '/choose-seat': (context) => ChooseSeatPage(),
         '/checkout': (context) => CheckoutPage(),
+        '/success-checkout': (context) => SuccessCheckoutPage(),
       },
     );
   }
