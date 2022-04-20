@@ -1,20 +1,12 @@
+import 'package:bwa_airplane/models/destination_model.dart';
 import 'package:bwa_airplane/shared/theme.dart';
-import 'package:bwa_airplane/ui/pages/detail_page.dart';
 import 'package:flutter/material.dart';
 
 class DestinationTile extends StatelessWidget {
-  final String name;
-  final String city;
-  final String imageUrl;
-  final double rating;
+  final DestinationModel destination;
 
-  const DestinationTile({
-    Key? key,
-    required this.name,
-    required this.city,
-    required this.imageUrl,
-    required this.rating,
-  }) : super(key: key);
+  const DestinationTile({Key? key, required this.destination})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +29,19 @@ class DestinationTile extends StatelessWidget {
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8),
                   image: DecorationImage(
-                      fit: BoxFit.cover, image: AssetImage(imageUrl))),
+                      fit: BoxFit.cover, image: NetworkImage(destination.imageUrl))),
             ),
             Expanded(
               child: Column(
                 children: [
                   Text(
-                    name,
-                    style:
-                        blackTextStyle.copyWith(fontSize: 18, fontWeight: medium),
+                    destination.name,
+                    style: blackTextStyle.copyWith(
+                        fontSize: 18, fontWeight: medium),
                   ),
                   SizedBox(height: 5),
                   Text(
-                    city,
+                    destination.city,
                     style: blackTextStyle.copyWith(fontWeight: light),
                   ),
                 ],
@@ -68,7 +60,7 @@ class DestinationTile extends StatelessWidget {
                           image: AssetImage('assets/icon_star.png'))),
                 ),
                 Text(
-                  rating.toString(),
+                  destination.rating.toString(),
                   style: blackTextStyle.copyWith(fontWeight: medium),
                 )
               ],
