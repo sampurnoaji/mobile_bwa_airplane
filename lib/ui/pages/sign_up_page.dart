@@ -1,9 +1,16 @@
+import 'package:bwa_airplane/cubit/auth_cubit.dart';
 import 'package:bwa_airplane/shared/theme.dart';
 import 'package:bwa_airplane/ui/widgets/custom_button.dart';
 import 'package:bwa_airplane/ui/widgets/custom_text_form_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SignUpPage extends StatelessWidget {
+  TextEditingController nameController = TextEditingController(text: '');
+  TextEditingController emailController = TextEditingController(text: '');
+  TextEditingController passwordController = TextEditingController(text: '');
+  TextEditingController hobbyController = TextEditingController(text: '');
+
   Widget title() {
     return Container(
       margin: EdgeInsets.only(top: 30),
@@ -28,26 +35,62 @@ class SignUpPage extends StatelessWidget {
         ),
         child: Column(
           children: [
-            CustomTextFormField(label: 'Full Name', hint: 'Your full name'),
             CustomTextFormField(
-                label: 'Email Address', hint: 'Your email address'),
+              label: 'Full Name',
+              hint: 'Your full name',
+              controller: nameController,
+            ),
+            CustomTextFormField(
+              label: 'Email Address',
+              hint: 'Your email address',
+              controller: emailController,
+            ),
             CustomTextFormField(
               label: 'Password',
               hint: 'Your password',
               obscureText: true,
+              controller: passwordController,
             ),
-            CustomTextFormField(label: 'Hobby', hint: 'Your hobby'),
+            CustomTextFormField(
+              label: 'Hobby',
+              hint: 'Your hobby',
+              controller: hobbyController,
+            ),
             SizedBox(height: 10),
-            CustomButton(
-              title: 'Get Started',
-              onPressed: () {
-                Navigator.pushNamed(context, '/bonus');
-              },
-            ),
+            submitButton(),
           ],
         ),
       );
     });
+  }
+
+  Widget submitButton() {
+    return BlocConsumer<AuthCubit, AuthState>(
+      listener: (context, state) {
+        if (state is AuthSuccess) {
+          Navigator.pushNamedAndRemoveUntil(
+              context, '/bonus', (route) => false);
+        } else if (state is AuthFailed) {
+          ScaffoldMessenger.of(context).showSnackBar(
+              SnackBar(backgroundColor: kRedColor, content: Text(state.error)));
+        }
+      },
+      builder: (context, state) {
+        if (state is AuthLoading) {
+          return Center(child: CircularProgressIndicator());
+        }
+        return CustomButton(
+          title: 'Get Started',
+          onPressed: () {
+            context.read<AuthCubit>().signUp(
+                email: emailController.text,
+                password: passwordController.text,
+                name: nameController.text,
+                hobby: hobbyController.text);
+          },
+        );
+      },
+    );
   }
 
   Widget tacButton() {
