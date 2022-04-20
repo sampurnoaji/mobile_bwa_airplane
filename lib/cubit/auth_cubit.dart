@@ -13,13 +13,22 @@ class AuthCubit extends Cubit<AuthState> {
       required String password,
       required String name,
       String hobby = ''}) async {
+    emit(AuthLoading());
     try {
-      emit(AuthLoading());
-
       UserModel user = await AuthService()
           .signUp(email: email, password: password, name: name, hobby: hobby);
 
       emit(AuthSuccess(user));
+    } catch (e) {
+      emit(AuthFailed(e.toString()));
+    }
+  }
+
+  void signOut() async {
+    emit(AuthLoading());
+    try {
+      await AuthService().signOut();
+      emit(AuthInitial());
     } catch (e) {
       emit(AuthFailed(e.toString()));
     }
