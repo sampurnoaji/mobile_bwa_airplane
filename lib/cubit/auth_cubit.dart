@@ -1,6 +1,7 @@
 import 'package:bloc/bloc.dart';
 import 'package:bwa_airplane/models/user_model.dart';
 import 'package:bwa_airplane/services/auth_service.dart';
+import 'package:bwa_airplane/services/user_service.dart';
 import 'package:equatable/equatable.dart';
 
 part 'auth_state.dart';
@@ -29,6 +30,16 @@ class AuthCubit extends Cubit<AuthState> {
     try {
       await AuthService().signOut();
       emit(AuthInitial());
+    } catch (e) {
+      emit(AuthFailed(e.toString()));
+    }
+  }
+
+  void getCurrentUser(String id) async {
+    emit(AuthLoading());
+    try {
+      UserModel user = await UserService().getUserById(id);
+      emit(AuthSuccess(user));
     } catch (e) {
       emit(AuthFailed(e.toString()));
     }
